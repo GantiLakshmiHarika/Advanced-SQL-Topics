@@ -54,3 +54,49 @@ drop table emp;  // we use only DDl commands drop we wont use delete command
 helptext in stored procedure uses the  below syntax as predefined 
 sp_helptext -- it usually returns the text procedure code that where we have written  it mainly focuses on _ underscore .
 
+EXAMPLE :
+
+
+create table employe
+(
+EmployeeID   int,
+EmployeeName varchar(20),
+Salary int,
+Department varchar(20)
+);
+
+insert into employe(EmployeeID,EmployeeName,Salary,Department) values (1,'ram',34600,'mech');
+insert into employe(EmployeeID,EmployeeName,Salary,Department) values (2,'raju',56600,'civil');
+insert into employe(EmployeeID,EmployeeName,Salary,Department) values (3,'ramesh',12500,'it');
+insert into employe(EmployeeID,EmployeeName,Salary,Department) values (4,'rakesh',64600,'mech');
+insert into employe(EmployeeID,EmployeeName,Salary,Department) values (5,'rani',45900,'mech');
+insert into employe(EmployeeID,EmployeeName,Salary,Department) values (6,'rahul',43600,'it');
+insert into employe(EmployeeID,EmployeeName,Salary,Department) values (7,'ramaya',89600,'mech');
+insert into employe(EmployeeID,EmployeeName,Salary,Department) values (8,'rathod',50600,'csd');
+insert into employe(EmployeeID,EmployeeName,Salary,Department) values (9,'ramya',33600,'mech');
+insert into employe(EmployeeID,EmployeeName,Salary,Department) values (10,'ramani',21600,'csd');
+
+select * from employe;
+
+
+-- stored procedures --
+CREATE PROCEDURE GetEmployeDetails
+ @Department varchar(20)
+AS
+BEGIN 
+    IF EXISTS (SELECT 1 FROM employe WHERE Department = @Department)
+    BEGIN 
+        SELECT EmployeeID, EmployeeName, Salary 
+        FROM employe 
+        WHERE Department = @Department;
+    END
+    ELSE
+    BEGIN 
+        PRINT 'No employees found in this department.';
+    END 
+END;
+GO
+
+-- Execute procedure with parameter
+EXEC GetEmployeDetails @Department = 'mech';
+EXEC GetEmployeDetails @Department = '';
