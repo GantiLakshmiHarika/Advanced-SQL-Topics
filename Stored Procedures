@@ -1,1 +1,56 @@
+stored procedures will write the sql query once and use them again and again we no need to write the code again and again in it self it says storing of the procedure 
+
+Syntax :
+// Creation of the Stored Procedure 
+create procedure procedure name 
+AS
+BEGIN 
+-----lines of code -----
+-----lines of code -----
+-----lines of code -----
+END
+
+//  Alter 
+Alter procedure procedure name 
+AS
+BEGIN 
+-----lines of code -----
+-----lines of code -----
+-----lines of code -----
+END
+
+// TO run or execute 
+exec procedure name 
+        or 
+execute   procedure name 
+
+// Using parameters - in parameters we use @ symbole before AS 
+create procedure procedure name 
+@ empid
+@product name 
+AS
+BEGIN 
+-----lines of code -----
+-----lines of code -----
+-----lines of code -----
+END
+select * from emp where productname = @productname;
+select * from  emp where empid =@empid;
+
+
+
+//drop of stored procedure 
+create procedure procedure name 
+AS
+BEGIN 
+-----lines of code -----
+-----lines of code -----
+-----lines of code -----
+END
+
+drop table emp;  // we use only DDl commands drop we wont use delete command 
+
+
+helptext in stored procedure uses the  below syntax as predefined 
+sp_helptext -- it usually returns the text procedure code that where we have written  it mainly focuses on _ underscore .
 
